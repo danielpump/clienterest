@@ -3,8 +3,9 @@
  */
 package com.rest.client.integration;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +17,64 @@ import com.rest.client.integration.rest.PlacaCarroRestClient;
  *
  */
 @Service
-@Configurable
 public class PlacaCarroIntegracao {
-	
+
 	@Autowired
 	private PlacaCarroRestClient client;
 
-	public void consultarPorPlaca(String status) {
-		
-		client.consultarPorStatus(status);
+	public  Map<String, String> consultarPorStatus(String status) {
+		try {
+			return client.consultarPorStatus(status);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
+	public  Map<String, String> consultarPorPlaca(String placa) {
+		try {
+			return client.consultarPorPlaca(placa);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public  Map<String, String> cadastrar(String placa, String status) {
+		try {
+			return client.cadastrar(placa, status);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public  Map<String, String> atualizar(String placa, String status) {
+		try {
+			return client.atualizarPorPlaca(placa, status);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void excluir(String placa) {
+		try {
+			client.excluirPorPlaca(placa);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("com.rest");
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("com.rest.client");
 
 		PlacaCarroIntegracao bean = ctx.getBean(PlacaCarroIntegracao.class);
 
-		bean.consultarPorPlaca("ok");
+		System.out.println( bean.consultarPorStatus("ok").get("status").toString());
+		System.out.println(bean.consultarPorPlaca("ADJ5785").get("status"));
+		System.out.println(bean.cadastrar("vvv1235", "bloqueado").get("status"));
+		System.out.println(bean.atualizar("vvv1235", "ok").get("status"));
+		System.out.println(bean.consultarPorPlaca("vvv1235").get("status"));
+		bean.excluir("vvv1235");
+		System.out.println( bean.consultarPorStatus("ok").get("status"));
+//		bean.consultarPorStatus("ok");
 
 	}
 
