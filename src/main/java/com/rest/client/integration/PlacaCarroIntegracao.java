@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.rest.client.integration.rest.PlacaCarroRestClient;
 
@@ -41,7 +42,11 @@ public class PlacaCarroIntegracao {
 	public  Map<String, String> cadastrar(String placa, String status) {
 		try {
 			return client.cadastrar(placa, status);
-		} catch (Exception e) {
+		} catch (HttpClientErrorException e) {
+			e.printStackTrace();
+			System.out.println(e.getResponseBodyAsString());
+			throw new RuntimeException(e);
+		}	catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -54,9 +59,9 @@ public class PlacaCarroIntegracao {
 		}
 	}
 
-	public void excluir(String placa) {
+	public Map<String, String> excluir(String placa) {
 		try {
-			client.excluirPorPlaca(placa);
+			return client.excluirPorPlaca(placa);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -72,7 +77,7 @@ public class PlacaCarroIntegracao {
 		System.out.println(bean.cadastrar("vvv1235", "bloqueado").get("status"));
 		System.out.println(bean.atualizar("vvv1235", "ok").get("status"));
 		System.out.println(bean.consultarPorPlaca("vvv1235").get("status"));
-		bean.excluir("vvv1235");
+		System.out.println(bean.excluir("vvv1235").get("excluido"));
 		System.out.println( bean.consultarPorStatus("ok").get("status"));
 //		bean.consultarPorStatus("ok");
 
