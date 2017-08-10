@@ -23,10 +23,10 @@ Esta aplicação não executa sozinha pois é uma biblioteca
 
 As URLs da aplicação de cadastro de status que a biblioteca acessa são:
 
-http://localhost:8081/placa/consultar?numero=Placa do veículo
-http://localhost:8081/placa/consultar?status=OK
-http://localhost:8081/placa/cadastrar
-http://localhost:8081/placa/atualizar?numero=Placa do veículo
+http://localhost:8081/placa/consultar?numero=Placa do veículo<br>
+http://localhost:8081/placa/consultar?status=OK<br>
+http://localhost:8081/placa/cadastrar<br>
+http://localhost:8081/placa/atualizar?numero=Placa do veículo<br>
 http://localhost:8081/placa/excluir?numero=Placa do veículo
 
 
