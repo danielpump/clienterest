@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -70,6 +71,7 @@ public class PlacaCarroRestClient {
 	 */
 	private static final String PARAMETRO_NUMERO = "numero=";
 
+	@Autowired
 	private RestTemplate template;
 	/**
 	 * Cabeçalho padrão das requisições
@@ -81,7 +83,6 @@ public class PlacaCarroRestClient {
 	 */
 	@PostConstruct
 	public void init() {
-		template = new RestTemplate();
 		jsonHeader = new HttpHeaders();
 		jsonHeader.setContentType(MediaType.APPLICATION_JSON);
 		objectMapper = new ObjectMapper();
@@ -94,7 +95,7 @@ public class PlacaCarroRestClient {
 	 * @return Mapa com os valores do JSON da integração
 	 * @throws Exception Lança a exceção da integração
 	 */
-	public Map<String, String> consultarPorStatus(String status) throws Exception {
+	public Map<String, Object> consultarPorStatus(String status) throws Exception {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(SERVER).append(RAIZ).append(SERVICO_CONSULTAR).append(FIM_URI).append(PARAMETRO_STATUS)
 				.append(status);

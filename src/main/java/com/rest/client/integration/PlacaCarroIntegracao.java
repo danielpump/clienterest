@@ -7,8 +7,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import com.rest.client.integration.rest.PlacaCarroRestClient;
 
@@ -36,7 +37,7 @@ public class PlacaCarroIntegracao {
 	 * @return Mapa com os valores do JSON da integração
 	 * @exception RuntimeException Encapsulamento da exceção lançada da integração
 	 */
-	public Map<String, String> consultarPorStatus(String status) {
+	public Map<String, Object> consultarPorStatus(String status) {
 		try {
 			return client.consultarPorStatus(status);
 		} catch (Exception e) {
@@ -107,7 +108,7 @@ public class PlacaCarroIntegracao {
 	}
 
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext("com.rest.client");
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Configuracao.class);
 
 		PlacaCarroIntegracao bean = ctx.getBean(PlacaCarroIntegracao.class);
 
