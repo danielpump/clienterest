@@ -17,13 +17,13 @@ JUnit
 
 ### Deploy
 
-Esta aplicação não executa sozinha pois é uma biblioteca.
-Mas para os outros sistemas a utilizarem é necessário executar o comando mvn clean install. 
-Ess processo baixa as dependência e executa a suite de testes automatizados do componente.
+Esta aplicação não executa sozinha pois é uma biblioteca.<br>
+Mas para os outros sistemas a utilizarem é necessário executar o comando mvn clean install. <br>
+Ess processo baixa as dependência e executa a suite de testes automatizados do componente.<br>
 
 ### Dependências
 
-Java 8
+Java 8<br>
 Maven 3
 
 ### Serviços acessados
@@ -39,10 +39,11 @@ Requisição DELETE: http://localhost:8081/placa/excluir?numero=Placa do veícul
 
 ### Testes
 
-Foram implementados testes de integração nos testes automatizados. Foi utilizado mock para os serviços externos que a aplicação acesso.
+Foram implementados testes de integração nos testes automatizados. <br>
+Foi utilizado mock para os serviços externos que a aplicação acesso.<br>
 
 ### Considerações
-Projeto foi liberado na versão 0.1.0. Mas não foi gerado nenhum tag;
-Não foram colocados logs na aplicação por falta de tempo, mas os logs seriam colocados com uma lib de aspecto para manter o código limpo e conseguir usar o log sem interferir na aplicação;
-O código foi feito em português por escolha pessoal, apesar de poder ser em inglês acredito que fica melhor escrito em português pelo modelo estar em português. 
+Projeto foi liberado na versão 0.1.0. Mas não foi gerado nenhum tag;<br>
+Não foram colocados logs na aplicação por falta de tempo, mas os logs seriam colocados com uma lib de aspecto para manter o código limpo e conseguir usar o log sem interferir na aplicação;<br>
+O código foi feito em português por escolha pessoal, apesar de poder ser em inglês acredito que fica melhor escrito em português pelo modelo estar em português. <br>
 
